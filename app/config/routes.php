@@ -6,4 +6,9 @@ return [
         'action' => 'index',
     ],
 
+    'social_buttons' => [
+        'controller' => 'main',
+        'action' => 'social_buttons',
+    ]
+
 ];

@@ -12,10 +12,7 @@
 </head>
 
 <body>
-    <div class="container my-5">
-        <?= $content?>
-    </div>
-    
+    <?= $content?>
 </body>
 
 </html>
