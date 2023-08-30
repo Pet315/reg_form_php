@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
   nextButton2.addEventListener("click", function () {
     const form = document.getElementById("multiStepForm");
     if (!form.checkValidity()) {
-      window.alert("An error occurred while filling out the form");
+      steps[currentStep].style.display = "none";
+      currentStep--;
+      steps[currentStep].style.display = "block";
     }
   });
 });

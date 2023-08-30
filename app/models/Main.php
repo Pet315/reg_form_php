@@ -15,4 +15,12 @@ class Main extends Model {
         $result = $this->db->all($insert);
         return $result;
     }
+
+    public function recordsNumber() {
+        return $this->db->all("SELECT COUNT(*) FROM users;");
+    }
+
+    public function showData() {
+        return $this->db->all("SELECT * FROM users;");
+    }
 }
