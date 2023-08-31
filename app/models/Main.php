@@ -5,13 +5,13 @@ namespace app\models;
 use app\core\Model;
 
 class Main extends Model {
-    public function saveForm($formData) {
+    public function saveForm($formData, $photo) {
         $insert = "INSERT INTO users VALUES (NULL, '" . $formData['first_name'] . "', '" . 
             $formData['last_name'] . "', '" . $formData['birthdate'] . "', '" . 
             $formData['report_subject'] . "', '" . $formData['country'] . "', '" . 
             $formData['phone'] . "', '" . $formData['email'] . "', '" . 
             $formData['company'] . "', '" . $formData['position'] . "', '" . 
-            $formData['about_me'] . "', '" . $formData['photo'] . "');";
+            $formData['about_me'] . "', '" . $photo . "');";
         $result = $this->db->all($insert);
         return $result;
     }

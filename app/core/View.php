@@ -16,8 +16,6 @@ class View {
         if (file_exists($path)) {
             ob_start();
             require $path;
-            $content = ob_get_clean();
-            require 'app/views/layout.php';
         } else {
             $this->error();
         }
@@ -25,15 +23,13 @@ class View {
 
     public function error($title='Page not found') {
         ob_start();
-        $content = '';
-        require 'app/views/layout.php';
+        require 'app/views/main/index.php';
         exit();
     }
 
     public static function errorDefine($title='Page not found') {
         ob_start();
-        $content = '';
-        require 'app/views/layout.php';
+        require 'app/views/main/index.php';
         exit();
     }
 }

@@ -2,8 +2,8 @@
 
 return [
     'reg_form' => [
-        'controller' => 'main',
-        'action' => 'index',
+        'controller' => '',
+        'action' => '',
     ],
 
     'social_buttons' => [
