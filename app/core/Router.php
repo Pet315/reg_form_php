@@ -44,9 +44,7 @@ class Router {
                 View::errorDefine();
             }
         } else {
-            if ($path == '') {
-                View::errorDefine('aaa');
-            }
+            View::errorDefine('Main page');
         }
     }
 
