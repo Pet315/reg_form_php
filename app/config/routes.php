@@ -1,9 +1,14 @@
 <?php
 
 return [
-    'reg_form' => [
-        'controller' => '',
-        'action' => '',
+    '' => [
+        'controller' => 'main',
+        'action' => 'index',
+    ],
+
+    'step2' => [
+        'controller' => 'main',
+        'action' => 'step2',
     ],
 
     'social_buttons' => [

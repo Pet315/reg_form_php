@@ -44,7 +44,14 @@ class Router {
                 View::errorDefine();
             }
         } else {
-            View::errorDefine('Main page');
+            $path = 'app\controllers\MainController';
+            $action = 'index';
+            $params = [
+                'controller' => 'main',
+                'action' => 'index',
+            ];
+            $controller = new $path($params);
+            $controller->$action();
         }
     }
 

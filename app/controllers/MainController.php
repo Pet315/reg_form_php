@@ -6,17 +6,23 @@ use app\core\Controller;
 class MainController extends Controller  {
 
     public function index() {
+        // var_dump($_POST);
         $vars = [
         ];
         $this->view->render("Registration form", $vars);
     }
 
-    public function social_buttons() {
-        // $targetDir = "public/img/";
-        // $targetFile = $targetDir . basename($_POST["photo"]);
-        // strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    public function step2() {
+        $this->model->saveForm($_POST);
 
-        if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $vars = [
+            'step1' => $_POST
+        ];
+        $this->view->render("Step 2", $vars);
+    }
+
+    public function social_buttons() {
+         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/img/';
             $photo = uniqid() . '_' . $_FILES['photo']['name'];
             $targetFile = $uploadDir . $photo;
@@ -25,7 +31,8 @@ class MainController extends Controller  {
             $photo = '';
         }
 
-        $this->model->saveForm($_POST, $photo);
+        $this->model->deleteByEmail($_POST['email']);
+        $this->model->saveForm($_POST, false, $photo);
         
 
         $number = $this->model->recordsNumber();
