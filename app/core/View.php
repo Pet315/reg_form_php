@@ -10,7 +10,7 @@ class View {
         $this->path = $route['controller'].'/'.$route['action'];
     }
 
-    public function render($title, $vars=[]) {
+    public function render($title, $vars=[], $content='') {
         extract($vars);
         $path = 'app/views/'.$this->path.'.php';
         if (file_exists($path)) {
@@ -21,13 +21,13 @@ class View {
         }
     }
 
-    public function error($title='Page not found') {
+    public function error($title='Page not found', $content='') {
         ob_start();
         require 'app/views/main/index.php';
         exit();
     }
 
-    public static function errorDefine($title='Page not found') {
+    public static function errorDefine($title='Main page', $content='') {
         ob_start();
         require 'app/views/main/index.php';
         exit();

@@ -23,6 +23,10 @@ class Main extends Model {
         return $result;
     }
 
+    public function checkEmail($email) {
+        return $this->db->all("SELECT COUNT(*) FROM users WHERE email = '". $email ."';");
+    }
+
     public function deleteByEmail($email) {
         return $this->db->all("DELETE FROM users WHERE email = '". $email ."';");
     }

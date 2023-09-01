@@ -5,6 +5,9 @@
         form {
             width: 50%;
         }
+        .content {
+            color: red;
+        }
     </style>
 
     <script src="public/js/countries.js"></script>
@@ -13,6 +16,7 @@
 
 <body>
     <div class="container my-5">
+        <h3 class="content"><?= $content?></h3>
         <h3>To participate in the conference, please fill out the form</h3>
 
         <form action="/reg_form_php/step2" method="post">

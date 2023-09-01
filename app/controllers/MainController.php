@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use app\core\Controller;
+use app\core\View;
 
 class MainController extends Controller  {
 
@@ -13,6 +14,9 @@ class MainController extends Controller  {
     }
 
     public function step2() {
+        if ($this->model->checkEmail($_POST['email']) > 0) {
+            return View::errorDefine('Main page', 'Wrong email');
+        }
         $this->model->saveForm($_POST);
 
         $vars = [
