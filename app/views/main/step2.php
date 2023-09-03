@@ -26,15 +26,15 @@
 
             <div class="mb-3">
                 <label for="company">Company:</label>
-                <input type="text" class="form-control" name="company">
+                <input type="text" class="form-control" value="<?php if (count($_SESSION['POST2']) > 1) { echo $_SESSION['POST2']['company'];} ?>" name="company">
             </div>
             <div class="mb-3">
                 <label for="position">Position:</label>
-                <input type="text" class="form-control" name="position">
+                <input type="text" class="form-control" value="<?php if (count($_SESSION['POST2']) > 1) { echo $_SESSION['POST2']['position'];} ?>" name="position">
             </div>
             <div class="mb-3">
                 <label for="about-me">About me:</label>
-                <textarea class="form-control" name="about_me" rows="4"></textarea>
+                <textarea class="form-control" name="about_me" rows="4" value="<?php if (count($_SESSION['POST2']) > 1) { echo $_SESSION['POST2']['about_me'];} ?>"></textarea>
             </div>
             <div class="mb-3">
                 <label for="photo">Photo:</label>

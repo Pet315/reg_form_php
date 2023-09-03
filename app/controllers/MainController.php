@@ -2,11 +2,12 @@
 
 namespace app\controllers;
 use app\core\Controller;
-use app\core\View;
+// use app\core\View;
 
 class MainController extends Controller  {
 
     public function index() {
+        // var_dump(count($_SESSION['POST']));
         $vars = [
         ];
         $this->view->render("Registration form", $vars);
@@ -17,7 +18,7 @@ class MainController extends Controller  {
         // if ($this->model->checkEmail($_POST['email'])[0][0] > 0) {
         //     return View::errorDefine('Main page', 'Wrong email');
         // }
-        
+
         $this->model->deleteByEmail($_POST['email']);
         $this->model->saveForm($_POST);
 
@@ -28,7 +29,8 @@ class MainController extends Controller  {
     }
 
     public function social_buttons() {
-         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $_SESSION['POST2'] = $_POST;
+        if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/img/';
             $photo = uniqid() . '_' . $_FILES['photo']['name'];
             $targetFile = $uploadDir . $photo;
@@ -48,7 +50,6 @@ class MainController extends Controller  {
             'tw' => $tw
         ];
 
-        // var_dump($_FILES);
         $this->view->render("Social buttons", $vars);
     }
 
