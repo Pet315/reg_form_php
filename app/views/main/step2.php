@@ -26,15 +26,15 @@
 
             <div class="mb-3">
                 <label for="company">Company:</label>
-                <input type="text" class="form-control" id="company" name="company">
+                <input type="text" class="form-control" name="company">
             </div>
             <div class="mb-3">
                 <label for="position">Position:</label>
-                <input type="text" class="form-control" id="position" name="position">
+                <input type="text" class="form-control" name="position">
             </div>
             <div class="mb-3">
                 <label for="about-me">About me:</label>
-                <textarea class="form-control" id="about-me" name="about_me" rows="4"></textarea>
+                <textarea class="form-control" name="about_me" rows="4"></textarea>
             </div>
             <div class="mb-3">
                 <label for="photo">Photo:</label>

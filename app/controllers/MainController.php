@@ -7,14 +7,14 @@ use app\core\View;
 class MainController extends Controller  {
 
     public function index() {
-        // var_dump($_POST);
         $vars = [
         ];
         $this->view->render("Registration form", $vars);
     }
 
     public function step2() {
-        if ($this->model->checkEmail($_POST['email']) > 0) {
+        $_SESSION['POST'] = $_POST;
+        if ($this->model->checkEmail($_POST['email'])[0][0] > 0) {
             return View::errorDefine('Main page', 'Wrong email');
         }
         $this->model->saveForm($_POST);

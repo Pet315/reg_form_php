@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextButton2 = document.getElementById("nextStep2");
 
   nextButton2.addEventListener("click", function () {
-    const form = document.getElementById("multiStepForm");
+    const form = document.getElementById("form");
     if (!form.checkValidity()) {
       steps[currentStep].style.display = "none";
       currentStep--;
