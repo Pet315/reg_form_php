@@ -15,7 +15,7 @@ class MainController extends Controller  {
 
     public function step2() {
         $_SESSION['POST'] = $_POST;
-        var_dump($_SESSION['POST2']);
+        // var_dump($_SESSION['POST2']);
         // if ($this->model->checkEmail($_POST['email'])[0][0] > 0) {
         //     return View::errorDefine('Main page', 'Wrong email');
         // }
