@@ -22,7 +22,7 @@
         <form action="/reg_form_php/step2" method="post">
             <div class="mb-3">
                 <label for="first_name" class="form-label">First Name:</label>
-                <input type="text" class="form-control" name="first_name" value="<?php if (count($_SESSION['POST']) > 1) { echo $_SESSION['POST']['first_name'];} ?>" required>
+                <input type="text" class="form-control" name="first_name" value="<?php echo $_SESSION['POST']['first_name'] ?>" required>
             </div>
 
             <div class="mb-3">

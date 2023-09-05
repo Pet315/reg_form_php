@@ -19,7 +19,7 @@
   </div>
 
   <div class="text-center mt-3">
-    <a href="/reg_form_php/all_members" class="text-decoration-none" target="_blank">
+    <a href="/all_members" class="text-decoration-none" target="_blank">
       <h4>All members (<?= $number ?>)</h4>
     </a>
   </div>

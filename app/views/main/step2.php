@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="company">Company:</label>
-                <input type="text" class="form-control" value="<?php if (count($_SESSION['POST2']) > 1) { echo $_SESSION['POST2']['company'];} ?>" name="company">
+                <input type="text" class="form-control" value="<?php echo $_SESSION['POST2']['company'] ?>" name="company">
             </div>
             <div class="mb-3">
                 <label for="position">Position:</label>
