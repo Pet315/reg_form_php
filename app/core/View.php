@@ -32,4 +32,10 @@ class View {
         require 'app/views/main/index.php';
         exit();
     }
+
+    public static function errorPhoto($title='Step 2', $content='') {
+        ob_start();
+        require 'app/views/main/step2.php';
+        exit();
+    }
 }

@@ -2,36 +2,78 @@
 
 namespace app\controllers;
 use app\core\Controller;
-// use app\core\View;
+use app\core\View;
 
 class MainController extends Controller  {
 
     public function index() {
-        // var_dump(count($_SESSION['POST']));
+        session_destroy();
+        session_start();
         $vars = [
         ];
-        $this->view->render("Registration form", $vars);
+        $this->view->render("Main page", $vars);
     }
 
     public function step2() {
-        $_SESSION['POST'] = $_POST;
-        // var_dump($_SESSION['POST2']);
-        // if ($this->model->checkEmail($_POST['email'])[0][0] > 0) {
-        //     return View::errorDefine('Main page', 'Wrong email');
-        // }
+        if (!isset($_POST['first_name'])) {
+            return View::errorDefine('Main page');
+        }
 
-        $this->model->deleteByEmail($_POST['email']);
+        session_destroy();
+        session_start();
+        $_SESSION['POST'] = $_POST;
+
+        foreach ($_POST as $key => $value) {
+            if ($value === '') {
+                $key = str_replace("_", " ", $key);
+                return View::errorDefine('Main page', "Please enter $key");
+            }
+        }
+
+        if (strpos($_POST['phone'], "_")) {
+            return View::errorDefine('Main page', "Enter your phone number in full");
+        }
+
+        if (!strpos($_POST['email'], "@")) {
+            return View::errorDefine('Main page', "Please use @ in your email");
+        }
+
+        $emailRepeats = $this->model->checkField($_POST['email'], 'email')[0][0];
+        $phoneRepeats = $this->model->checkField($_POST['phone'], 'phone')[0][0];
+
+        if ($emailRepeats < 1 or $phoneRepeats < 1) {
+            if ($emailRepeats > 0) {
+                return View::errorDefine('Main page', 'This email already exists');
+            }
+
+            if ($phoneRepeats > 0) {
+                return View::errorDefine('Main page', 'This phone number already exists');
+            }
+        }
+
+        $this->model->deleteByEmailAndPhone($_POST['email'], $_POST['phone']);
         $this->model->saveForm($_POST);
 
         $vars = [
-            'step1' => $_POST
         ];
         $this->view->render("Step 2", $vars);
     }
 
     public function social_buttons() {
-        $_SESSION['POST2'] = $_POST;
+        if (!isset($_POST['first_name'])) {
+            return View::errorDefine('Main page');
+        }
+        
+        // var_dump($_FILES);
         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+            // $maxFileSize = 2 * 1024 * 1024;
+            // if ($_FILES['photo']['size'] > $maxFileSize) {
+            //     session_destroy();
+            //     session_start();
+            //     $_SESSION['POST'] = $_POST;
+            //     return View::errorPhoto('Step 2', 'The file size exceeds the maximum allowed (2MB)');
+            // }
+
             $uploadDir = 'public/img/';
             $photo = uniqid() . '_' . $_FILES['photo']['name'];
             $targetFile = $uploadDir . $photo;
@@ -40,7 +82,7 @@ class MainController extends Controller  {
             $photo = '';
         }
 
-        $this->model->deleteByEmail($_POST['email']);
+        $this->model->deleteByEmailAndPhone($_POST['email'], $_POST['phone']);
         $this->model->saveForm($_POST, false, $photo);
         
 

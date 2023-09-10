@@ -23,12 +23,19 @@ class Main extends Model {
         return $result;
     }
 
-    public function checkEmail($email) {
-        return $this->db->all("SELECT COUNT(*) FROM users WHERE email = '". $email ."';");
+    public function checkField($field, $name) {
+        return $this->db->all("SELECT COUNT(*) FROM users WHERE ". $name ." = '". $field ."';");
     }
 
-    public function deleteByEmail($email) {
-        return $this->db->all("DELETE FROM users WHERE email = '". $email ."';");
+    public function deleteByEmailAndPhone($email, $phone) {
+        // $uploadDir = 'public/img/';
+        // $photo = $this->db->all("SELECT photo FROM users WHERE email = '". $email ."' AND phone = '". $phone ."';")[0][0];
+        // echo $photo;
+        // if ($photo !== '') {
+        //     $targetFile = $uploadDir . $photo;
+        //     unlink($targetFile);
+        // }
+        return $this->db->all("DELETE FROM users WHERE email = '". $email ."' AND phone = '". $phone ."';");
     }
 
     public function recordsNumber() {
