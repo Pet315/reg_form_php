@@ -13,27 +13,27 @@ class MainController extends Controller  {
     }
 
     public function step2() {
-        if (!isset($_POST['first_name'])) {
-            return View::errorDefine('Main page');
-        }
+        $this->ifPost();
 
         session_destroy();
         session_start();
         $_SESSION['POST'] = $_POST;
 
+        $errors = [];
+
         foreach ($_POST as $key => $value) {
             if ($value === '') {
                 $key = str_replace("_", " ", $key);
-                return View::errorDefine('Main page', "Please enter $key");
+                $errors[] = "Please enter $key";
             }
         }
 
         if (strpos($_POST['phone'], "_")) {
-            return View::errorDefine('Main page', "Enter your phone number in full");
+            $errors[] = "Enter your phone number in full";
         }
 
         if (!strpos($_POST['email'], "@")) {
-            return View::errorDefine('Main page', "Please use @ in your email");
+            $errors[] = "Please use @ in your email";
         }
 
         $emailRepeats = $this->model->checkField($_POST['email'], 'email')[0][0];
@@ -41,12 +41,16 @@ class MainController extends Controller  {
 
         if ($emailRepeats < 1 or $phoneRepeats < 1) {
             if ($emailRepeats > 0) {
-                return View::errorDefine('Main page', 'This email already exists');
+                $errors[] = 'This email already exists';
             }
 
             if ($phoneRepeats > 0) {
-                return View::errorDefine('Main page', 'This phone number already exists');
+                $errors[] = 'This phone number already exists';
             }
+        }
+
+        if (!empty($errors)) {
+            return View::errorDefine('Main page', $errors);
         }
 
         $this->model->deleteByEmailAndPhone($_POST['email'], $_POST['phone']);
@@ -56,9 +60,7 @@ class MainController extends Controller  {
     }
 
     public function social_buttons() {
-        if (!isset($_POST['first_name'])) {
-            return View::errorDefine('Main page');
-        }
+        $this->ifPost();
         
         // var_dump($_FILES);
         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -90,5 +92,11 @@ class MainController extends Controller  {
             'users' => $users
         ];
         $this->view->render("All members", $vars);
+    }
+
+    public function ifPost() {
+        if (!isset($_POST['first_name'])) {
+            return View::errorDefine('Main page');
+        }
     }
 }
