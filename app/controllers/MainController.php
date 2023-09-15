@@ -13,7 +13,7 @@ class MainController extends Controller  {
     }
 
     public function step2() {
-        $this->ifPost();
+        $this->ifNotPost();
 
         session_destroy();
         session_start();
@@ -60,7 +60,7 @@ class MainController extends Controller  {
     }
 
     public function social_buttons() {
-        $this->ifPost();
+        $this->ifNotPost();
         
         // var_dump($_FILES);
         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -75,7 +75,6 @@ class MainController extends Controller  {
         $this->model->deleteByEmailAndPhone($_POST['email'], $_POST['phone']);
         $this->model->saveForm($_POST, false, $photo);
         
-
         $number = $this->model->recordsNumber();
         $tw = require 'app/config/tw_share.php';
         $vars = [
@@ -94,7 +93,7 @@ class MainController extends Controller  {
         $this->view->render("All members", $vars);
     }
 
-    public function ifPost() {
+    public function ifNotPost() {
         if (!isset($_POST['first_name'])) {
             return View::errorDefine('Main page');
         }
