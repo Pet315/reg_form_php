@@ -9,9 +9,7 @@ class MainController extends Controller  {
     public function index() {
         session_destroy();
         session_start();
-        $vars = [
-        ];
-        $this->view->render("Main page", $vars);
+        $this->view->render("Main page");
     }
 
     public function step2() {
@@ -54,9 +52,7 @@ class MainController extends Controller  {
         $this->model->deleteByEmailAndPhone($_POST['email'], $_POST['phone']);
         $this->model->saveForm($_POST);
 
-        $vars = [
-        ];
-        $this->view->render("Step 2", $vars);
+        $this->view->render("Step 2");
     }
 
     public function social_buttons() {
@@ -66,14 +62,6 @@ class MainController extends Controller  {
         
         // var_dump($_FILES);
         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-            // $maxFileSize = 2 * 1024 * 1024;
-            // if ($_FILES['photo']['size'] > $maxFileSize) {
-            //     session_destroy();
-            //     session_start();
-            //     $_SESSION['POST'] = $_POST;
-            //     return View::errorPhoto('Step 2', 'The file size exceeds the maximum allowed (2MB)');
-            // }
-
             $uploadDir = 'public/img/';
             $photo = uniqid() . '_' . $_FILES['photo']['name'];
             $targetFile = $uploadDir . $photo;
