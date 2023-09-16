@@ -26,7 +26,7 @@
         <div class="mb-3">
             <label for="photo">Photo (file size: 2MB):</label>
             <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/jpeg, image/png">
-            <br><small class="form-text text-danger" id="fileSizeError"><?= $error?></small>
+            <br><small class="form-text text-danger" id="fileSizeError"></small>
         </div>
         <script src="public/js/checkPhoto.js"></script>
         
