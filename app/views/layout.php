@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13215.079075971047!2d-118.3434578!3d34.101038!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf20e4b705f7%3A0x1c4beb7772cd2003!2s7060%20Hollywood!5e0!3m2!1suk!2sua!4v1693223926975!5m2!1suk!2sua" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13215.079075971047!2d-118.3434578!3d34.101038!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf20e4b705f7%3A0x1c4beb7772cd2003!2s7060%20Hollywood!5e0!3m2!1suk!2sua!4v1693223926975!5m2!1suk!2sua" style="width: 100%; height: 450px; border: 0;"></iframe>
     <?= $content?>
 </body>
 
