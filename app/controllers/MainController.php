@@ -62,7 +62,7 @@ class MainController extends Controller  {
     public function social_buttons() {
         $this->ifNotPost();
         
-        var_dump($_FILES);
+        // var_dump($_FILES);
         if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/img/';
             $photo = uniqid() . '_' . $_FILES['photo']['name'];
